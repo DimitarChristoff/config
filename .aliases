@@ -1,0 +1,23 @@
+# User specific environment and startup programs
+
+alias ll='ls -lGa'
+alias d='ll'
+alias p="cd ~/projects"
+alias g="git"
+alias gp="git push; growlnotify -t 'Git Push' -m 'thanks for the push, asshole!'"
+alias v="vim"
+
+# Undo a `git push`
+alias undopush="git push -f origin HEAD^:master"
+
+# Easier navigation: .., ..., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias s="cd .."
+
+alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
