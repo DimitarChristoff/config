@@ -35,8 +35,15 @@ else
 fi
 
 
+function git_relative_time_since_last_commit {
+	if [ -d ".git" ]; then
+  local LAST=`git log --pretty=format:'%ar' -1`
+	echo "$LAST"
+  fi
+}
+
 function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "$ORANGE *"
+	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "$ORANGE *$PURPLE $(git_relative_time_since_last_commit)"
 }
 
 function parse_git_branch() {
