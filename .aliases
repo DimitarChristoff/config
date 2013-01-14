@@ -6,6 +6,7 @@ alias p="cd ~/projects"
 alias g="git"
 alias gp="git push; growlnotify -t 'Git Push' -m 'thanks for the push, asshole!'"
 alias v="vim"
+alias grep="grep --color -E"
 
 # Undo a `git push`
 alias undopush="git push -f origin HEAD^:master"
