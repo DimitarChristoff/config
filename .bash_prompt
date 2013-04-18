@@ -1,5 +1,83 @@
 # @gf3’s Sexy Bash Prompt, inspired by “Extravagant Zsh Prompt”
 # Shamelessly copied from https://github.com/gf3/dotfiles
+function bashtime {
+	time=`date +%I%M`;
+	if [ "$time" -lt 115 ]
+	then
+		echo -n '🕐'
+	elif [ "$time" -lt 145 ]
+	then
+		echo -n '🕜'
+	elif [ "$time" -lt 215 ]
+	then
+		echo -n '🕑'
+	elif [ "$time" -lt 245 ]
+	then
+		echo -n '🕝'
+	elif [ "$time" -lt 315 ]
+	then
+		echo -n '🕒'
+	elif [ "$time" -lt 345 ]
+	then
+		echo -n '🕞'
+	elif [ "$time" -lt 415 ]
+	then
+		echo -n '🕓'
+	elif [ "$time" -lt 445 ]
+	then
+		echo -n '🕟'
+	elif [ "$time" -lt 515 ]
+	then
+		echo -n '🕔'
+	elif [ "$time" -lt 545 ]
+	then
+		echo -n '🕠'
+	elif [ "$time" -lt 615 ]
+	then
+		echo -n '🕕'
+	elif [ "$time" -lt 645 ]
+	then
+		echo -n '🕡'
+	elif [ "$time" -lt 715 ]
+	then
+		echo -n '🕖'
+	elif [ "$time" -lt 745 ]
+	then
+		echo -n '🕢'
+	elif [ "$time" -lt 815 ]
+	then
+		echo -n '🕗'
+	elif [ "$time" -lt 845 ]
+	then
+		echo -n '🕣'
+	elif [ "$time" -lt 915 ]
+	then
+		echo -n '🕘'
+	elif [ "$time" -lt 945 ]
+	then
+		echo -n '🕤'
+	elif [ "$time" -lt 1015 ]
+	then
+		echo -n '🕙'
+	elif [ "$time" -lt 1045 ]
+	then
+		echo -n '🕥'
+	elif [ "$time" -lt 1115 ]
+	then
+		echo -n '🕚'
+	elif [ "$time" -lt 1145 ]
+	then
+		echo -n '🕦'
+	elif [ "$time" -lt 1215 ]
+	then
+		echo -n '🕛'
+	elif [ "$time" -lt 1300 ]
+	then
+		echo -n '🕛'
+	else
+		echo -n '⭕'
+	fi
+}
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
 	export TERM=gnome-256color
@@ -36,18 +114,16 @@ fi
 
 
 function git_relative_time_since_last_commit {
-    # are we in a git repo? don't want to call git to find out.
-    d=`pwd`
+	d=`pwd`
 	found=0
 	while [ "$d" != "" ]; do
-        [ -d "$d"/.git ] && found=1
+	  [ -d "$d"/.git ] && found=1
 	d=${d%/*}
 	done
 	if [ $found == 1 ]; then
-	    # yes we are. see when last commit was
-        local LAST=`git log --pretty=format:'%ar' -1`
-	    echo "$LAST"
-    fi
+  local LAST=`git log --pretty=format:'%ar' -1`
+	echo "$LAST"
+  fi
 }
 
 function parse_git_dirty() {
@@ -69,4 +145,5 @@ function parse_git_branch() {
 # in the iterm tab
 # \[\e]1;\]$(basename $(dirname $PWD))/\W\[\a\]
 
-PS1="\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+PS1="$(bashtime)  \[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+
