@@ -36,13 +36,13 @@ function git_relative_time_since_last_commit {
 	d=`pwd`
 	found=0
 	while [ "$d" != "" ]; do
-	  [ -d "$d"/.git ] && found=1
-	d=${d%/*}
+		[ -d "$d"/.git ] && found=1
+		d=${d%/*}
 	done
 	if [ $found == 1 ]; then
-  local LAST=`git log --pretty=format:'%ar' -1`
-	echo "$LAST"
-  fi
+		local LAST=`git log --pretty=format:'%ar' -1 &>/dev/stdout 2>/dev/null`
+		echo "$LAST"
+	fi
 }
 
 function parse_git_dirty() {
