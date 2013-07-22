@@ -9,7 +9,7 @@ unset file
 
 # init nvm
 source ~/.nvm/nvm.sh
-nvm use 0.8.24
+nvm use 0.8.25
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
